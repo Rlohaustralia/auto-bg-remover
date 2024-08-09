@@ -2,13 +2,17 @@ import streamlit as st
 from rembg import remove
 from PIL import Image
 import io
+import zipfile
+from io import BytesIO
 
 def main():
+
 
     # Page Config
     st.set_page_config(layout="wide", page_title="Background Remover")
     st.write("__Background Removal Web App__")
     st.markdown("<br>" * 2, unsafe_allow_html=True)
+
 
     # License
     license_text = """
@@ -38,48 +42,86 @@ def main():
     st.write(license_text)
     st.markdown("<br>" * 2, unsafe_allow_html=True)
 
-    # Allowed file types
-    uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "png", "jpeg"])
 
-    if uploaded_file is not None:
-        try:
-            # 업로드된 파일을 PIL 이미지 객체로 변환
-            image = Image.open(uploaded_file)
-            st.image(image, caption='Uploaded Image', use_column_width=True)
+    # Allowed file types (multiple files)
+    uploaded_files = st.file_uploader("Choose an image...", type=["jpg", "png", "jpeg"], accept_multiple_files=True)
 
-            # Show image info
-            print(image.format)  # JPEG, PNG, 등
-            print(image.size)    # (width, height)
-            print(image.mode)    # RGB, L, 등
+    if uploaded_files is not None:
+        processed_images = []
+
+        for uploaded_file in uploaded_files:
+            # Split the layout into two columns
+            col1, col2 = st.columns(2)
+
+            try:
+                # Load the image
+                image = Image.open(uploaded_file)
+
+                # Get image details
+                img_size = image.size
+               
+                # Format caption
+                caption = f"Original Image  {img_size}"
+
+                with col1:
+                    st.image(image, caption=caption, use_column_width=True)
 
 
-            with st.spinner('Removing background...'):
-                # Convert the image to binary file
-                buffer = io.BytesIO()
-                image.save(buffer, format="PNG")
-                input_data = buffer.getvalue()
+                with col2:
+                    with st.spinner('Removing background...'):
+                        # Convert the image to binary file
+                        buffer = io.BytesIO()
+                        image.save(buffer, format="PNG")
+                        input_data = buffer.getvalue()
 
-                # Call the backgound remover function
-                output_data = remove(input_data)
-                output_image = Image.open(io.BytesIO(output_data))
+                        # Call the backgound remover function
+                        output_data = remove(input_data)
+                        output_image = Image.open(io.BytesIO(output_data))
 
-            st.image(output_image, caption='Processed Image', use_column_width=True)
-            st.success('Background removed successfully!')
+                        st.image(output_image, caption='Processed Image')
 
-            # Text input for custom file name
-            default_filename = "processed_img.png"
-            file_name = st.text_input("Enter file name: ", value=default_filename)
+                # Save processed images
+                processed_images.append((output_image, uploaded_file.name))
 
-            # Download image
+    
+
+            except Exception as e:
+                st.error(f"Error: {e}")
+
+            
+
+       
+
+
+        # Checks if the 'processed_images' list is not empty
+        if processed_images:
+            st.success('All Done!')      
+
+            # Create a zip file in memory
+            zip_buffer = BytesIO()
+
+            # Create a new zip file inside the 'zip_buffer'
+            with zipfile.ZipFile(zip_buffer, "a", zipfile.ZIP_DEFLATED) as zip_file:
+                for img, img_name in processed_images:
+
+                    # This buffer will hold the binary data of the processed image
+                    img_buffer = BytesIO()
+                    img.save(img_buffer, format='PNG')
+
+                    # Write the processed image in PNG format into the zip file
+                    zip_file.writestr(f"processed_{img_name}", img_buffer.getvalue())
+
+
+            zip_buffer.seek(0)
+            
+            # Download images
             st.download_button(
-                label="Download Image",
-                data = output_data,
-                file_name = "f{file_name}.png",
-                mime = "image/png"
+                label="Download Images as Zip",
+                data = zip_buffer,
+                file_name = "processed_images.zip",
+                mime = "application/zip"
             )
-        except Exception as e:
-            st.error(f"Error: {e}")
-  
+       
     
     footer = """
         ---
