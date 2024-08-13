@@ -24,46 +24,59 @@ def main():
     if uploaded_files is not None:
         processed_images = []
 
-        for uploaded_file in uploaded_files:
-            # Split the layout into two columns
-            col1, col2 = st.columns(2)
+        # Progress bar
+        total_files_num = len(uploaded_files)
 
-            try:
-                # Load the image
-                image = Image.open(uploaded_file)
+        if total_files_num > 0:
 
-                # Get image details
-                img_size = image.size
-               
-                # Format caption
-                caption = f"{uploaded_file.name} {img_size}"
+            progress_bar = st.progress(0)
+            progress_step = 1 / total_files_num
 
-                with col1:
-                    st.image(image, caption=caption, use_column_width=True)
 
-                with col2:
-                    with st.spinner('Removing background...'):
-                        # Convert the image to binary file
-                        buffer = io.BytesIO()
-                        image.save(buffer, format="PNG")
-                        input_data = buffer.getvalue()
+            for idx, uploaded_file in enumerate(uploaded_files):
 
-                        # Call the background remover function
-                        output_data = remove(input_data)
-                        output_image = Image.open(io.BytesIO(output_data))
+                # Split the layout into two columns
+                col1, col2 = st.columns(2)
 
-                        # Generate HTML for image and download button
-                        img_name = uploaded_file.name.rsplit('.', 1)[0] + '.png'
-                        html_code = create_image_with_download_button(output_image, img_name)
+                try:
+                    # Load the image
+                    image = Image.open(uploaded_file)
 
-                        # Render HTML in Streamlit
-                        st.markdown(html_code, unsafe_allow_html=True)
+                    # Get image details
+                    img_size = image.size
+                    
+                    # Format caption
+                    caption = f"{uploaded_file.name} {img_size}"
 
-                # Save processed images
-                processed_images.append((output_image, uploaded_file.name))
+                    with col1:
+                        st.image(image, caption=caption, use_column_width=True)
 
-            except Exception as e:
-                st.error(f"Error: {e}")
+                    with col2:
+                        with st.spinner('Removing background...'):
+                            # Convert the image to binary file
+                            buffer = io.BytesIO()
+                            image.save(buffer, format="PNG")
+                            input_data = buffer.getvalue()
+
+                            # Call the background remover function
+                            output_data = remove(input_data)
+                            output_image = Image.open(io.BytesIO(output_data))
+
+                            # Generate HTML for image and download button
+                            img_name = uploaded_file.name.rsplit('.', 1)[0] + '.png'
+                            html_code = create_image_with_download_button(output_image, img_name)
+
+                            # Render HTML in Streamlit
+                            st.markdown(html_code, unsafe_allow_html=True)
+
+                    # Save processed images
+                    processed_images.append((output_image, uploaded_file.name))
+
+                    # Update progress bar for each file
+                    progress_bar.progress((idx + 1) * progress_step)
+
+                except Exception as e:
+                    st.error(f"Error: {e}")
 
         if processed_images:
             st.success('All Done!')
