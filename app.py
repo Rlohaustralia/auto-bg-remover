@@ -4,15 +4,15 @@ from PIL import Image
 import io
 import zipfile
 from io import BytesIO
+import base64
+from utils import create_image_with_download_button
+
 
 def main():
-
-
     # Page Config
     st.set_page_config(layout="wide", page_title="Background Remover")
     st.write("__Background Removal Web App__")
     st.markdown("<br>" * 2, unsafe_allow_html=True)
-
 
     # License
     license_text = """
@@ -42,9 +42,8 @@ def main():
     st.write(license_text)
     st.markdown("<br>" * 2, unsafe_allow_html=True)
 
-
     # Allowed file types (multiple files)
-    uploaded_files = st.file_uploader("Choose an image...", type=["jpg", "png", "jpeg"], accept_multiple_files=True)
+    uploaded_files = st.file_uploader("Choose an image... 𓂀", type=["jpg", "png", "jpeg"], accept_multiple_files=True)
 
     if uploaded_files is not None:
         processed_images = []
@@ -61,11 +60,10 @@ def main():
                 img_size = image.size
                
                 # Format caption
-                caption = f"Original Image  {img_size}px"
+                caption = f"{uploaded_file.name} {img_size}"
 
                 with col1:
                     st.image(image, caption=caption, use_column_width=True)
-
 
                 with col2:
                     with st.spinner('Removing background...'):
@@ -74,28 +72,25 @@ def main():
                         image.save(buffer, format="PNG")
                         input_data = buffer.getvalue()
 
-                        # Call the backgound remover function
+                        # Call the background remover function
                         output_data = remove(input_data)
                         output_image = Image.open(io.BytesIO(output_data))
 
-                        st.image(output_image, caption='Processed Image')
+                        # Generate HTML for image and download button
+                        img_name = uploaded_file.name.rsplit('.', 1)[0] + '.png'
+                        html_code = create_image_with_download_button(output_image, img_name)
+
+                        # Render HTML in Streamlit
+                        st.markdown(html_code, unsafe_allow_html=True)
 
                 # Save processed images
                 processed_images.append((output_image, uploaded_file.name))
 
-    
-
             except Exception as e:
                 st.error(f"Error: {e}")
 
-            
-
-       
-
-
-        # Checks if the 'processed_images' list is not empty
         if processed_images:
-            st.success('All Done!')      
+            st.success('All Done!')
 
             # Create a zip file in memory
             zip_buffer = BytesIO()
@@ -103,9 +98,8 @@ def main():
             # Create a new zip file inside the 'zip_buffer'
             with zipfile.ZipFile(zip_buffer, "a", zipfile.ZIP_DEFLATED) as zip_file:
                 for img, img_name in processed_images:
-                    
-                    # Strip original extention and add PNG
-                    final_img_name = img_name.rsplit('.',1)[0]
+                    # Strip original extension and add PNG
+                    final_img_name = img_name.rsplit('.', 1)[0]
 
                     # This buffer will hold the binary data of the processed image
                     img_buffer = BytesIO()
@@ -114,24 +108,19 @@ def main():
                     # Write the processed image in PNG format into the zip file
                     zip_file.writestr(f"processed_{final_img_name}.png", img_buffer.getvalue())
 
-
             zip_buffer.seek(0)
-            
-            # Download images
             st.download_button(
                 label="Download Images as Zip",
-                data = zip_buffer,
-                file_name = "processed_images.zip",
-                mime = "application/zip"
+                data=zip_buffer,
+                file_name="processed_images.zip",
+                mime="application/zip"
             )
-       
-    
+
     footer = """
         ---
             © 2024 8DIVISION. All rights reserved.
             New Standard, Inc  8DIVISION, 31 Toegye-ro 118-gil, Jung-gu, Seoul, Republic of Korea  +82 70-4135-0038   Business Registration Number: 692-81-02223
             Representative: In-Chan Oh, Shin-Gu Heo, Sang-Ho Park  Mail order business report number: 2021-Seoul Jung-gu 2467  info@8division.com
-            
         """
     st.markdown(footer)
 
