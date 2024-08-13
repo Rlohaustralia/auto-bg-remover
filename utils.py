@@ -1,8 +1,18 @@
 from io import BytesIO
 import base64
 
+def load_text_file(file_path):
+    with open(file_path, 'r') as file:
+        return file.read()
+
+def get_license_text():
+    return load_text_file('MIT_License.txt')
+
+def get_footer_text():
+    return load_text_file('footer_text.txt')
+
 def create_image_with_download_button(image, file_name):
-    """ Create HTML and JavaScript for an image with a download button that appears on hover """
+  
     # Convert image to bytes
     img_buffer = BytesIO()
     image.save(img_buffer, format="PNG")
