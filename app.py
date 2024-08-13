@@ -61,7 +61,7 @@ def main():
                 img_size = image.size
                
                 # Format caption
-                caption = f"Original Image  {img_size}"
+                caption = f"Original Image  {img_size}px"
 
                 with col1:
                     st.image(image, caption=caption, use_column_width=True)
@@ -103,13 +103,16 @@ def main():
             # Create a new zip file inside the 'zip_buffer'
             with zipfile.ZipFile(zip_buffer, "a", zipfile.ZIP_DEFLATED) as zip_file:
                 for img, img_name in processed_images:
+                    
+                    # Strip original extention and add PNG
+                    final_img_name = img_name.rsplit('.',1)[0]
 
                     # This buffer will hold the binary data of the processed image
                     img_buffer = BytesIO()
                     img.save(img_buffer, format='PNG')
 
                     # Write the processed image in PNG format into the zip file
-                    zip_file.writestr(f"processed_{img_name}", img_buffer.getvalue())
+                    zip_file.writestr(f"processed_{final_img_name}.png", img_buffer.getvalue())
 
 
             zip_buffer.seek(0)
