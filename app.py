@@ -12,14 +12,22 @@ def main():
     # Page Config
     st.set_page_config(layout="wide", page_title="Background Remover")
     st.write("__Background Removal Web App__")
-    st.markdown("<br>" * 2, unsafe_allow_html=True)
+    st.markdown("<br>" * 1, unsafe_allow_html=True)
+
+    # Split the layout into two columns
+    col1, col2 = st.columns(2)
+    with col1:
+        st.image("bg1.jpg")
+    with col2:
+        st.image("bg2.jpg")
+    
 
     # License
-    st.write(get_license_text())
-    st.markdown("<br>" * 2, unsafe_allow_html=True)
+    #st.write(get_license_text())
+    st.markdown("<br>" * 1, unsafe_allow_html=True)
 
     # Allowed file types (multiple files)
-    uploaded_files = st.file_uploader("Choose an image... 𓂀", type=["jpg", "png", "jpeg"], accept_multiple_files=True)
+    uploaded_files = st.file_uploader("Choose an image... 𓂀", type=["jpg", "png", "jpeg", "webp"], accept_multiple_files=True)
 
     if uploaded_files is not None:
         processed_images = []
