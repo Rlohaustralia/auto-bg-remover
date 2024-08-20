@@ -8,6 +8,7 @@ import base64
 from utils import get_license_text, create_image_with_download_button, get_footer_text
 
 
+
 def main():
     # Page Config
     st.set_page_config(layout="wide", page_title="Background Remover")
@@ -17,9 +18,9 @@ def main():
     # Split the layout into two columns
     col1, col2 = st.columns(2)
     with col1:
-        st.image("bg1.jpg")
+        st.image("test_img/bg1.jpg")
     with col2:
-        st.image("bg2.jpg")
+        st.image("test_img/bg2.jpg")
     
 
     # License
@@ -28,6 +29,7 @@ def main():
 
     # Allowed file types (multiple files)
     uploaded_files = st.file_uploader("Choose an image... 𓂀", type=["jpg", "png", "jpeg", "webp"], accept_multiple_files=True)
+
 
     if uploaded_files is not None:
         processed_images = []
