@@ -12,7 +12,7 @@ from utils import get_license_text, create_image_with_download_button, get_foote
 def main():
     # Page Config
     st.set_page_config(layout="wide", page_title="Background Remover")
-    st.write("__Background Removal Web App__")
+    st.title("__Background Removal Web App__")
     st.markdown("<br>" * 1, unsafe_allow_html=True)
 
     # Split the layout into two columns
@@ -24,7 +24,6 @@ def main():
     
 
     # License
-    #st.write(get_license_text())
     st.markdown("<br>" * 1, unsafe_allow_html=True)
 
     # Allowed file types (multiple files)
