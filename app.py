@@ -12,8 +12,20 @@ from utils import get_license_text, create_image_with_download_button, get_foote
 def main():
     # Page Config
     st.set_page_config(layout="wide", page_title="Background Remover")
+    
+    # Title
     st.write("В⩜𓍹ʞℊ𝐫⚬∪𓎆ძ󠀠󠀠󠀠󠁝󠁝️󠁫󠁜󠁩ㅤƦ꒰ϻ⚬⚺꒰я ㅤㅤㅤㅤㅤ𓃦ㅤㅤㅤㅤㅤ𓍯𓂃 ␥")
-    # st.markdown("<br>" * 1, unsafe_allow_html=True)
+
+    # Insert hidden text as an HTML comment
+    st.markdown("<!--Free Background Remover Web App -->", unsafe_allow_html=True)
+    st.markdown("<!--무료 누끼 제거 사이트-->", unsafe_allow_html=True)
+    st.markdown(
+    """
+    <meta name="description" content="Remove backgrounds from images for free.">
+    <meta name="keywords" content="background remover, image editing, online tool">
+    """,
+    unsafe_allow_html=True
+    )
 
     # Split the layout into two columns
     col1, col2 = st.columns(2)
