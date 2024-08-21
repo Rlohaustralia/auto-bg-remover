@@ -12,8 +12,8 @@ from utils import get_license_text, create_image_with_download_button, get_foote
 def main():
     # Page Config
     st.set_page_config(layout="wide", page_title="Background Remover")
-    st.subheader("__Background Removal Web App__")
-    st.markdown("<br>" * 1, unsafe_allow_html=True)
+    st.write("В⩜𓍹ʞℊ𝐫⚬∪𓎆ძ󠀠󠀠󠀠󠁝󠁝️󠁫󠁜󠁩ㅤƦ꒰ϻ⚬⚺꒰я ㅤㅤㅤㅤㅤ𓃦ㅤㅤㅤㅤㅤ𓍯𓂃 ␥")
+    # st.markdown("<br>" * 1, unsafe_allow_html=True)
 
     # Split the layout into two columns
     col1, col2 = st.columns(2)
@@ -27,7 +27,7 @@ def main():
     st.markdown("<br>" * 1, unsafe_allow_html=True)
 
     # Allowed file types (multiple files)
-    uploaded_files = st.file_uploader("Choose an image... 𓂀", type=["jpg", "png", "jpeg", "webp"], accept_multiple_files=True)
+    uploaded_files = st.file_uploader("Choose an image... ⌖", type=["jpg", "png", "jpeg", "webp"], accept_multiple_files=True)
 
 
     if uploaded_files is not None:
