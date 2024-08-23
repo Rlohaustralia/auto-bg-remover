@@ -7,14 +7,6 @@ from io import BytesIO
 import base64
 from utils import get_license_text, create_image_with_download_button, get_footer_text
 
-st.markdown(
-    """
-    <!-- Google Site Verification -->
-    <meta name="google-site-verification" content="M7YL-mPrqsOmQSXAmtXZ0UTgI2CzcvDwqCmgdmJZhU4" />
-    """,
-    unsafe_allow_html=True
-)
-
 
 def main():
     # Page Config
@@ -26,13 +18,7 @@ def main():
     # Insert hidden text as an HTML comment
     st.markdown("<!--Free Background Remover Web App -->", unsafe_allow_html=True)
     st.markdown("<!--무료 누끼 제거 사이트-->", unsafe_allow_html=True)
-    st.markdown(
-    """
-    <meta name="description" content="Remove backgrounds from images for free.">
-    <meta name="keywords" content="background remover, image editing, online tool">
-    """,
-    unsafe_allow_html=True
-    )
+
 
     # Split the layout into two columns
     col1, col2 = st.columns(2)
