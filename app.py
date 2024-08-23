@@ -7,6 +7,13 @@ from io import BytesIO
 import base64
 from utils import get_license_text, create_image_with_download_button, get_footer_text
 
+st.markdown(
+    """
+    <!-- Google Site Verification -->
+    <meta name="google-site-verification" content="M7YL-mPrqsOmQSXAmtXZ0UTgI2CzcvDwqCmgdmJZhU4" />
+    """,
+    unsafe_allow_html=True
+)
 
 
 def main():
