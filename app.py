@@ -9,11 +9,8 @@ from utils import get_license_text, create_image_with_download_button, get_foote
 import os
 
 
-def serve_html_file(filename):
-    with open(filename, 'r') as file:
-        html_content = file.read()
-        st.markdown(html_content, unsafe_allow_html=True)
-
+# Google verification code
+google_verification_code = st.secrets["google_site_verification"]
 
 def main():
 
