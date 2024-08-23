@@ -9,9 +9,6 @@ from utils import get_license_text, create_image_with_download_button, get_foote
 import os
 
 
-# Google verification code
-google_verification_code = st.secrets["google_site_verification"]
-
 def main():
 
     # Serve verification file
