@@ -10,14 +10,6 @@ import os
 
 
 def main():
-
-    # Add the Naver site verification meta tag
-    st.markdown(
-        """
-        <meta name="naver-site-verification" content="f745a199243fb2666841ae25eefffd8298baec1d" />
-        """, 
-        unsafe_allow_html=True
-    )
         
 
     # Page Config
