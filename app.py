@@ -11,123 +11,120 @@ import os
 
 def main():
 
-    # Serve verification file
-    if st.experimental_get_query_params().get("file") == ["google_verification"]:
-        serve_html_file("googleff3c0ae38d711a22.html")
-    else:
+    
         
 
-        # Page Config
-        st.set_page_config(layout="wide", page_title="Background Remover")
-        
-        # Title
-        st.write("В⩜𓍹ʞℊ𝐫⚬∪𓎆ძ󠀠󠀠󠀠󠁝󠁝️󠁫󠁜󠁩ㅤƦ꒰ϻ⚬⚺꒰я ㅤㅤㅤㅤㅤ𓃦ㅤㅤㅤㅤㅤ𓍯𓂃 ␥")
+    # Page Config
+    st.set_page_config(layout="wide", page_title="Background Remover")
+    
+    # Title
+    st.write("В⩜𓍹ʞℊ𝐫⚬∪𓎆ძ󠀠󠀠󠀠󠁝󠁝️󠁫󠁜󠁩ㅤƦ꒰ϻ⚬⚺꒰я ㅤㅤㅤㅤㅤ𓃦ㅤㅤㅤㅤㅤ𓍯𓂃 ␥")
 
-        # Insert hidden text as an HTML comment
-        st.markdown("<!--Free Background Remover Web App -->", unsafe_allow_html=True)
-        st.markdown("<!--무료 누끼 제거 사이트-->", unsafe_allow_html=True)
-
-
-        # Split the layout into two columns
-        col1, col2 = st.columns(2)
-        with col1:
-            st.image("test_img/bg1.jpg")
-        with col2:
-            st.image("test_img/bg2.jpg")
-        
-
-        # License
-        st.markdown("<br>" * 1, unsafe_allow_html=True)
-
-        # Allowed file types (multiple files)
-        uploaded_files = st.file_uploader("Choose an image... ⌖", type=["jpg", "png", "jpeg", "webp"], accept_multiple_files=True)
+    # Insert hidden text as an HTML comment
+    st.markdown("<!--Free Background Remover Web App -->", unsafe_allow_html=True)
+    st.markdown("<!--무료 누끼 제거 사이트-->", unsafe_allow_html=True)
 
 
-        if uploaded_files is not None:
-            processed_images = []
+    # Split the layout into two columns
+    col1, col2 = st.columns(2)
+    with col1:
+        st.image("test_img/bg1.jpg")
+    with col2:
+        st.image("test_img/bg2.jpg")
+    
 
-            # Progress bar
-            total_files_num = len(uploaded_files)
+    # License
+    st.markdown("<br>" * 1, unsafe_allow_html=True)
 
-            if total_files_num > 0:
-
-                progress_bar = st.progress(0)
-                progress_step = 1 / total_files_num
+    # Allowed file types (multiple files)
+    uploaded_files = st.file_uploader("Choose an image... ⌖", type=["jpg", "png", "jpeg", "webp"], accept_multiple_files=True)
 
 
-                for idx, uploaded_file in enumerate(uploaded_files):
+    if uploaded_files is not None:
+        processed_images = []
 
-                    # Split the layout into two columns
-                    col1, col2 = st.columns(2)
+        # Progress bar
+        total_files_num = len(uploaded_files)
 
-                    try:
-                        # Load the image
-                        image = Image.open(uploaded_file)
+        if total_files_num > 0:
 
-                        # Get image details
-                        img_size = image.size
-                        
-                        # Format caption
-                        caption = f"{uploaded_file.name} {img_size}"
+            progress_bar = st.progress(0)
+            progress_step = 1 / total_files_num
 
-                        with col1:
-                            st.image(image, caption=caption, use_column_width=True)
 
-                        with col2:
-                            with st.spinner('Removing background...'):
-                                # Convert the image to binary file
-                                buffer = io.BytesIO()
-                                image.save(buffer, format="PNG")
-                                input_data = buffer.getvalue()
+            for idx, uploaded_file in enumerate(uploaded_files):
 
-                                # Call the background remover function
-                                output_data = remove(input_data)
-                                output_image = Image.open(io.BytesIO(output_data))
+                # Split the layout into two columns
+                col1, col2 = st.columns(2)
 
-                                # Generate HTML for image and download button
-                                img_name = uploaded_file.name.rsplit('.', 1)[0] + '.png'
-                                html_code = create_image_with_download_button(output_image, img_name)
+                try:
+                    # Load the image
+                    image = Image.open(uploaded_file)
 
-                                # Render HTML in Streamlit
-                                st.markdown(html_code, unsafe_allow_html=True)
+                    # Get image details
+                    img_size = image.size
+                    
+                    # Format caption
+                    caption = f"{uploaded_file.name} {img_size}"
 
-                        # Save processed images
-                        processed_images.append((output_image, uploaded_file.name))
+                    with col1:
+                        st.image(image, caption=caption, use_column_width=True)
 
-                        # Update progress bar for each file
-                        progress_bar.progress((idx + 1) * progress_step)
+                    with col2:
+                        with st.spinner('Removing background...'):
+                            # Convert the image to binary file
+                            buffer = io.BytesIO()
+                            image.save(buffer, format="PNG")
+                            input_data = buffer.getvalue()
 
-                    except Exception as e:
-                        st.error(f"Error: {e}")
+                            # Call the background remover function
+                            output_data = remove(input_data)
+                            output_image = Image.open(io.BytesIO(output_data))
 
-            if processed_images:
-                st.success('All Done!')
+                            # Generate HTML for image and download button
+                            img_name = uploaded_file.name.rsplit('.', 1)[0] + '.png'
+                            html_code = create_image_with_download_button(output_image, img_name)
 
-                # Create a zip file in memory
-                zip_buffer = BytesIO()
+                            # Render HTML in Streamlit
+                            st.markdown(html_code, unsafe_allow_html=True)
 
-                # Create a new zip file inside the 'zip_buffer'
-                with zipfile.ZipFile(zip_buffer, "a", zipfile.ZIP_DEFLATED) as zip_file:
-                    for img, img_name in processed_images:
-                        # Strip original extension and add PNG
-                        final_img_name = img_name.rsplit('.', 1)[0]
+                    # Save processed images
+                    processed_images.append((output_image, uploaded_file.name))
 
-                        # This buffer will hold the binary data of the processed image
-                        img_buffer = BytesIO()
-                        img.save(img_buffer, format='PNG')
+                    # Update progress bar for each file
+                    progress_bar.progress((idx + 1) * progress_step)
 
-                        # Write the processed image in PNG format into the zip file
-                        zip_file.writestr(f"processed_{final_img_name}.png", img_buffer.getvalue())
+                except Exception as e:
+                    st.error(f"Error: {e}")
 
-                zip_buffer.seek(0)
-                st.download_button(
-                    label="Download Images as Zip",
-                    data=zip_buffer,
-                    file_name="processed_images.zip",
-                    mime="application/zip"
-                )
-        # Footer
-        st.markdown(get_footer_text())
+        if processed_images:
+            st.success('All Done!')
+
+            # Create a zip file in memory
+            zip_buffer = BytesIO()
+
+            # Create a new zip file inside the 'zip_buffer'
+            with zipfile.ZipFile(zip_buffer, "a", zipfile.ZIP_DEFLATED) as zip_file:
+                for img, img_name in processed_images:
+                    # Strip original extension and add PNG
+                    final_img_name = img_name.rsplit('.', 1)[0]
+
+                    # This buffer will hold the binary data of the processed image
+                    img_buffer = BytesIO()
+                    img.save(img_buffer, format='PNG')
+
+                    # Write the processed image in PNG format into the zip file
+                    zip_file.writestr(f"processed_{final_img_name}.png", img_buffer.getvalue())
+
+            zip_buffer.seek(0)
+            st.download_button(
+                label="Download Images as Zip",
+                data=zip_buffer,
+                file_name="processed_images.zip",
+                mime="application/zip"
+            )
+    # Footer
+    st.markdown(get_footer_text())
 
 
 if __name__ == "__main__":
