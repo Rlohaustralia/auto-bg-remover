@@ -12,4 +12,4 @@ https://autobgremover.com
 - Remove the background from uploaded images using the `rembg` library.
 - Preview the original and processed images.
 - Download processed images individually or as a ZIP file.
-- Fully integrated with Streamlit for an easy-to-use web interface.
+- An easy-to-use web interface.
