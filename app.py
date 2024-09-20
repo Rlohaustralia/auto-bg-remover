@@ -26,9 +26,9 @@ def main():
     # Split the layout into two columns
     col1, col2 = st.columns(2)
     with col1:
-        st.image("test_img/bg1.jpg")
+        st.image("img/bg1.jpg")
     with col2:
-        st.image("test_img/bg2.jpg")
+        st.image("img/bg2.jpg")
     
 
     # License
