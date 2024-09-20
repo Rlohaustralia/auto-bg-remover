@@ -1,3 +1,4 @@
 ---
-    © MIT License. All rights reserved.
-    For questions or inquiries about improvements, please contact raeojin@gmail.com
+    © Eojin Ra. All rights reserved.
+    This project is licensed under the MIT License.
+    For inquiries, please contact raeojin@gmail.com
