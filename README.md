@@ -3,8 +3,9 @@
 This is a **Background Removal Web App** built with Streamlit and the `rembg` library. It allows users to upload images, remove their backgrounds, and download the processed images. The application supports multiple image formats and provides a simple and intuitive user interface for seamless background removal.
 
 ## Live web app
-https://autobgremover.streamlit.app/
-<img width="1427" alt="screenshot" src="https://github.com/user-attachments/assets/b232e4cb-6db9-4e04-b1c7-c01877050a95">
+[https://autobgremover.streamlit.app/](https://autobgremover.com/)
+<img width="1426" alt="Screenshot" src="https://github.com/user-attachments/assets/12535b4a-90e8-4d25-8afe-c7673b5ba146">
+
 
 ## Features
 
