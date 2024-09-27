@@ -17,8 +17,15 @@ https://autobgremover.com
 - **Progress Tracking:** A progress bar displays the background removal progress for multiple images.
 - **Download Individual Images:** Provides individual download options for each processed image.
 - **Batch Image Download:** Allows users to download all processed images as a ZIP file.
-- **User-friendly Interface:** Provides an intuitive interface for seamless background removal.
+  
 
 ## Architecture
 
 ## Improvement
+### Ordered by priority
+- **Improve image processing time:** Improve the app's ability to handle large data more efficiently, possibly through image resizing strategy, converting images to more efficient formats like webp, or Batch Processing Techniques.
+- **Enhanced Error Handling:** Provide more specific and user-friendly error messages when image processing fails, including possible solutions or retry options.
+- **Mobile Optimization:** Ensure the UI is fully responsive and optimized for mobile devices.
+- **Image Format Options for Download:** Allow users to choose different image formats (e.g., JPG, TIFF) for download rather than just PNG.
+- **Language Support:** Add multi-language support for non-English users.
+
