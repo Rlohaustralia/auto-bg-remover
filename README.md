@@ -20,9 +20,10 @@ https://autobgremover.com
   
 
 ## Architecture
+To be updated soon...
 
-## Improvement
 
+## Improvements
 Currently working on (Last updated on September 28, 2024) </br>
 Ordered by priority</br>
 - **Improve image processing time:** Improve the app's ability to handle large data more efficiently, possibly through image resizing strategy, converting images to more efficient formats like webp, or Batch Processing Techniques.
