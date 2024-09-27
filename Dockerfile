@@ -1,18 +1,19 @@
-# 1. 공식 Python 이미지를 기반으로 설정
+# 1. Set the official Python image as the base
 FROM python:3.9-slim
 
-# 2. 작업 디렉토리를 설정합니다
+# 2. Set the working directory
 WORKDIR /app
 
-# 3. 현재 디렉토리의 모든 파일을 컨테이너의 /app 디렉토리로 복사합니다
+# 3. Copy all files from the current directory to the /app directory in the container
 COPY . /app
 
-# 4. 필요한 Python 패키지를 설치합니다
+# 4. Install the required Python packages
 RUN pip install --no-cache-dir -r requirements.txt
 
-# 5. 컨테이너에서 사용할 포트를 지정합니다
+# 5. Specify the port to be used in the container
 EXPOSE 8501
 
-# 6. Streamlit 애플리케이션을 실행합니다
+# 6. Run the Streamlit application
 CMD ["streamlit", "run", "app.py", "--server.port=8501", "--server.enableCORS=false"]
+
 
