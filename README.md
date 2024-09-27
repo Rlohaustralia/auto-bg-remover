@@ -23,9 +23,8 @@ https://autobgremover.com
 
 ## Improvement
 
-Ordered by priority </br>
-Currently working on (Last updated on September 28, 2024)
-
+Currently working on (Last updated on September 28, 2024) </br>
+Ordered by priority</br>
 - **Improve image processing time:** Improve the app's ability to handle large data more efficiently, possibly through image resizing strategy, converting images to more efficient formats like webp, or Batch Processing Techniques.
 - **Enhanced Error Handling:** Provide more specific and user-friendly error messages when image processing fails, including possible solutions or retry options.
 - **Mobile Optimization:** Ensure the UI is fully responsive and optimized for mobile devices.
