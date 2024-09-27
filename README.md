@@ -5,7 +5,7 @@ This is a **Background Removal Web App** built with Streamlit and the `rembg` li
 ## Live web app
 https://autobgremover.com
 <img width="1426" alt="Screenshot" src="https://github.com/user-attachments/assets/12535b4a-90e8-4d25-8afe-c7673b5ba146">
-<img width="1411" alt="Screenshot2" src="https://github.com/user-attachments/assets/3e92a6d3-23cd-4d75-a0c4-d12755385701">
+<img width="1398" alt="Screenshot2" src="https://github.com/user-attachments/assets/9330e12b-ce36-4dd9-9fbd-ce21f15e384a">
 
 
 ## Features
