@@ -10,11 +10,14 @@ https://autobgremover.com
 
 ## Features
 
-- Upload multiple image files (JPG, PNG, JPEG, WEBP).
-- Remove the background from uploaded images using the `rembg` library.
-- Preview the original and processed images.
-- Download processed images individually or as a ZIP file.
-- An easy-to-use web interface.
+- **Multi-image Upload:** Users can upload multiple image files (JPG, PNG, JPEG, WEBP) at once for background removal.
+- **Background Removal:** The app uses the rembg library to remove the background from uploaded images.
+- **Image Previews:** Users can preview the original and processed images side by side.
+- **Image Metadata Display:** Displays the size and name of the uploaded image for user reference.
+- **Progress Tracking:** A progress bar displays the background removal progress for multiple images.
+- **Download Individual Images:** Provides individual download options for each processed image.
+- **Batch Image Download:** Allows users to download all processed images as a ZIP file.
+- **User-friendly Interface:** Provides an intuitive interface for seamless background removal.
 
 ## Architecture
 
