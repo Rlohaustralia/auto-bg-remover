@@ -23,7 +23,7 @@ https://autobgremover.com
 
 ## Improvement
 
-Ordered by priority
+Ordered by priority </br>
 Currently working on (Last updated on September 28, 2024)
 
 - **Improve image processing time:** Improve the app's ability to handle large data more efficiently, possibly through image resizing strategy, converting images to more efficient formats like webp, or Batch Processing Techniques.
