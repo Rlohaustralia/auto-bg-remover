@@ -26,7 +26,10 @@ This is a **Background Removal Web App** built with Streamlit and the `rembg` li
 
 
 ## Built with
-Python, Streamlit, VS Code, Docker, EC2, Route53, ACM
+Client: Python, Streamlit
+Containerization: Docker
+Domain Management: GoDaddy
+Cloud Infrastructure: AWS (ACM, Load Balancer, Route 53, EC2 with Ubuntu)
 </br>
 </br>
 
