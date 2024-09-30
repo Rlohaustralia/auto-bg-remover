@@ -46,12 +46,14 @@ Python, Streamlit, VS Code, GoDaddy, AWS (ACM, Load Balancer, Route 53, EC2 with
 
   
 2️⃣ **The app Worked Locally but Failed After Deployment to EC2** </br>
+   🚩
 - **Problem:** When deploying the app from the local environment to EC2, issues occurred due to differences in library dependencies and server configurations. Code that worked locally ran into errors on EC2, requiring manual adjustments. The main issues were Python version and package version mismatches between the two environments.</br>
 - **Solution:** To fix this, Docker was introduced. The packages from requirements.txt were installed within the Docker image, ensuring the app ran the same on both local and EC2. </br>
 - **What I learned:** I learned that Docker simplifies deployment by ensuring consistent environments, eliminating version and dependency issues, and improving app stability across platforms.</br></br>
 
 
 3️⃣ **The app loaded successfully but encountered 504 error when uploading images for background removal** </br>
+   🚩 Managing CPU and memory usage to enhance performance
 - **Problem:** The web page successfully loaded, but upon uploading images for background removal, the application encountered 504 Gateway Timeout due to communication delays between the server and the client.</br>
 - **Solution:**</br>
 After rebooting the instance and confirming correct settings for the public IP, DNS, and firewall, I investigated Docker issues. I discovered that the running Docker container had exited automatically due to an "Out of Memory" (OOM) error caused by the Streamlit application consuming excessive memory. To address this:</br>
@@ -66,6 +68,7 @@ After rebooting the instance and confirming correct settings for the public IP, 
 
 
 4️⃣ **Automatic Docker Shutdown on Timeout Errors** </br>
+   🚩 Using configuration files to minimize downtime and ensure availability
 - **Problem:** When a 504 Gateway Timeout error occurred, it led to subsequent 502 Bad Gateway errors.</br>
 - **Solution:** Initially, I had to manually restart Docker whenever a 502 error occurred, which was highly inefficient. To address this, I explored environment file configurations and modified the docker-compose.yml file to include restart: unless-stopped. This change ensured that the application restarts automatically if it encounters errors. As a result, the 502 error pages were eliminated, and refreshing the page now works seamlessly. </br>
 - **What I learned:** I learned the importance of configuring files because if a container stops due to an error or failure, it will automatically restart, minimizing downtime and ensuring the application remains available.</br></br>
