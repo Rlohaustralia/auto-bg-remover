@@ -60,6 +60,7 @@ Currently working on (Last updated on September 28, 2024) </br>
 ✔️ Ordered by priority</br>
 - **Improve image processing time:** Improve the app's ability to handle large data more efficiently, possibly through image resizing strategy, converting images to more efficient formats like webp, or Batch Processing Techniques.
 - **Enhanced Error Handling:** Provide more specific and user-friendly error messages when image processing fails, including possible solutions or retry options.
+- **Background Removal Improvement:** Enhance the background removal algorithm for better accuracy with white and light-colored clothing or jewelry by applying multiple models or introducing a different model to adjust the background to a darker shade, thereby increasing contrast and minimizing post-processing needs.
 - **Mobile Optimization:** Ensure the UI is fully responsive and optimized for mobile devices.
 - **Image Format Options for Download:** Allow users to choose different image formats (e.g., JPG, TIFF) for download rather than just PNG.
 - **Language Support:** Add multi-language support for non-English users.
