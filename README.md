@@ -26,12 +26,18 @@ Explain why I used this architecture and How it worked internally</br></br>
 
 
 ## Issue faced
-⛔ Problem:</br>
-✅ Solution:</br>
-🚀 What I learned:
+⛔ Problem: </br>
+✅ Solution: </br>
+🚀 What I learned: </br></br>
 
+⛔ Problem: </br>
+✅ Solution: </br>
+🚀 What I learned: </br></br>
 
-</br>
+⛔ Problem: </br>
+✅ Solution: </br>
+🚀 What I learned: </br></br>
+
 
 ## Future Improvements
 Currently working on (Last updated on September 28, 2024) </br>
