@@ -26,13 +26,11 @@ Explain why I used this architecture and How it worked internally</br></br>
 
 
 ## Issue faced
-1. Problem:
-   Solution:
-   What I learned:
+⛔ Problem:</br>
+✅ Solution:</br>
+🚀 What I learned:
 
-2. Problem:
-   Solution:
-   What I learned:
+
 </br>
 
 ## Future Improvements
