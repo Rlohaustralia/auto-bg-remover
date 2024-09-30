@@ -39,7 +39,7 @@ Python, Streamlit, VS Code, GoDaddy, AWS (ACM, Load Balancer, Route 53, EC2 with
 
 ## Issue faced
 1️⃣ **The app worked locally but failed after deployment to EC2**</br>
-  🚩**Eliminating version and dependency issues by using Docker**</br>
+- 🚩**Eliminating version and dependency issues by using Docker**</br>
 - **Problem:** When deploying the app from the local environment to EC2, issues occurred due to differences in library dependencies and server configurations. Code that worked locally ran into errors on EC2, requiring manual adjustments. The main issues were Python version and package version mismatches between the two environments.</br>
 - **Solution:** To fix this, Docker was introduced. The packages from requirements.txt were installed within the Docker image, ensuring the app ran the same on both local and EC2. </br>
 - **What I learned:** I learned that Docker simplifies deployment by ensuring consistent environments, eliminating version and dependency issues, and improving app stability across platforms.</br></br>
