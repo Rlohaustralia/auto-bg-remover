@@ -23,7 +23,17 @@ https://autobgremover.com
 ![architecture](https://github.com/user-attachments/assets/ac4c667c-e617-4154-992f-0bc1340d85e3)
 
 
-## Improvements
+## Issue faced
+1. Problem:
+   Solution:
+   What I learned:
+
+2. Problem:
+   Solution:
+   What I learned:
+
+
+## Future Improvements
 Currently working on (Last updated on September 28, 2024) </br>
 Ordered by priority</br>
 - **Improve image processing time:** Improve the app's ability to handle large data more efficiently, possibly through image resizing strategy, converting images to more efficient formats like webp, or Batch Processing Techniques.
