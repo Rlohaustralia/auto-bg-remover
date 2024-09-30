@@ -20,7 +20,7 @@ https://autobgremover.com
   
 
 ## Architecture
-![architecture](https://github.com/user-attachments/assets/b398521b-c6c7-42bb-a17f-25c5f6c22a13)
+![architecture](https://github.com/user-attachments/assets/ac4c667c-e617-4154-992f-0bc1340d85e3)
 
 
 ## Improvements
