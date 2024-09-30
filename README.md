@@ -26,7 +26,7 @@ This is a **Background Removal Web App** built with Streamlit and the `rembg` li
 
 
 ## Technology used
-✔️ Built with: Python, Streamlit, Docker, EC2, Route53, ACM
+Built with: Python, Streamlit, Docker, EC2, Route53, ACM
 </br>
 </br>
 
@@ -54,7 +54,7 @@ Explain why I used this architecture and How it worked internally</br></br>
 
 ## Future Improvements
 Currently working on (Last updated on September 28, 2024) </br>
-Ordered by priority</br>
+✔️ Ordered by priority</br>
 - **Improve image processing time:** Improve the app's ability to handle large data more efficiently, possibly through image resizing strategy, converting images to more efficient formats like webp, or Batch Processing Techniques.
 - **Enhanced Error Handling:** Provide more specific and user-friendly error messages when image processing fails, including possible solutions or retry options.
 - **Mobile Optimization:** Ensure the UI is fully responsive and optimized for mobile devices.
