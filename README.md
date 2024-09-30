@@ -1,4 +1,4 @@
-### Background Removal Web App
+## Background Removal Web App
 
 This is a **Background Removal Web App** built with Streamlit and the `rembg` library. It allows users to upload images, remove their backgrounds, and download the processed images. The application supports multiple image formats and provides a simple and intuitive user interface for seamless background removal.
 </br>
