@@ -46,7 +46,7 @@ Python, Streamlit, VS Code, GoDaddy, AWS (ACM, Load Balancer, Route 53, EC2 with
   
 2️⃣ **The app loaded successfully but encountered 504 / 502 error when uploading images for background removal** </br>
 - **Problem:** The web page successfully loaded, but upon uploading images for background removal, the application encountered 504 Gateway Timeout and subsequent 502 Bad Gateway errors due to communication delays between the server and the client.</br>
-- **Solution:** After rebooting the instance and confirming correct settings for the public IP, DNS, and firewall, I investigated Docker issues. I discovered that the running Docker container had exited automatically due to an "Out of Memory" (OOM) error caused by the Streamlit application consuming excessive memory.</br></br>
+- **Solution:** After rebooting the instance and confirming correct settings for the public IP, DNS, and firewall, I investigated Docker issues. I discovered that the running Docker container had exited automatically due to an "Out of Memory" (OOM) error caused by the Streamlit application consuming excessive memory.</br>
 To address this:</br>
 🧐 I monitored memory usage with the htop command, revealing high CPU usage.</br>
 🧐 I initially set up 1GB of swap memory, which reduced CPU load and allowed single image processing. However, further increases were limited by the instance's hardware capacity.</br>
