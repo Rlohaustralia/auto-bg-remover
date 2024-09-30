@@ -46,16 +46,16 @@ Python, Streamlit, VS Code, GoDaddy, AWS (ACM, Load Balancer, Route 53, EC2 with
   
 2️⃣ **The app loaded successfully but encountered 504 / 502 error when uploading images for background removal** </br>
 - **Problem:** The web page successfully loaded, but upon uploading images for background removal, the application encountered 504 Gateway Timeout and subsequent 502 Bad Gateway errors due to communication delays between the server and the client.</br>
-- **Solution:** After rebooting the instance and confirming correct settings for the public IP, DNS, and firewall, I investigated Docker issues. I discovered that the running Docker container had exited automatically due to an "Out of Memory" (OOM) error caused by the Streamlit application consuming excessive memory.</br>
+- **Solution:** After rebooting the instance and confirming correct settings for the public IP, DNS, and firewall, I investigated Docker issues. I discovered that the running Docker container had exited automatically due to an "Out of Memory" (OOM) error caused by the Streamlit application consuming excessive memory.</br></br>
 To address this:</br>
-I monitored memory usage with the htop command, revealing high CPU usage.</br>
-I initially set up 1GB of swap memory, which reduced CPU load and allowed single image processing. However, further increases were limited by the instance's hardware capacity.
-After deleting unnecessary logs, the CPU load decreased, but performance was still inadequate for processing multiple images.</br>
-Ultimately, I identified that high-resolution image files stored in the Docker container from local testing were degrading performance. After removing these files, the application could successfully handle multiple image processing like in local testing. </br>
+🧐 I monitored memory usage with the htop command, revealing high CPU usage.</br>
+🧐 I initially set up 1GB of swap memory, which reduced CPU load and allowed single image processing. However, further increases were limited by the instance's hardware capacity.</br>
+🧐 After deleting unnecessary logs, the CPU load decreased, but performance was still inadequate for processing multiple images.</br>
+🧐 Ultimately, I identified that high-resolution image files stored in the Docker container from local testing were degrading performance. After removing these files, the application could successfully handle multiple image processing like in local testing. </br>
 - **What I learned:**</br>
-🧠 Monitoring and managing memory usage is crucial for applications running in Docker containers, especially with memory-intensive tasks.</br>
-🧠 Implementing swap memory can provide temporary relief for memory issues but has limitations based on the instance type.</br>
-🧠 Regular cleanup of unnecessary files and resources within Docker containers can significantly enhance performance and resource management.</br></br>
+✅ Monitoring and managing memory usage is crucial, especially with memory-intensive tasks.</br>
+✅ Implementing swap memory can provide temporary relief for memory issues but has limitations based on the instance type.</br>
+✅ Regular cleanup of unnecessary files and resources within Docker containers can significantly enhance performance and resource management.</br></br>
 
 3️⃣ **The app Worked Locally but Failed After Deployment to EC2** </br>
 - **Problem:** When deploying the app from the local environment to EC2, issues occurred due to differences in library dependencies and server configurations. Code that worked locally ran into errors on EC2, requiring manual adjustments. The main issues were Python version and package version mismatches between the two environments.</br>
