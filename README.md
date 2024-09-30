@@ -20,8 +20,7 @@ This is a **Background Removal Web App** built with Streamlit and the `rembg` li
 </br>
 
 ## Architecture
-Explain why I used this architecture and How it worked internally
-</br>
+Explain why I used this architecture and How it worked internally</br></br>
 <img width="700" alt="Architecture" src="https://github.com/user-attachments/assets/ac4c667c-e617-4154-992f-0bc1340d85e3">
 </br>
 
