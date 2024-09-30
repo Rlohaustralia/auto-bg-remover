@@ -20,8 +20,7 @@ https://autobgremover.com
   
 
 ## Architecture
-![Yellow Clean Troubleshooting Guide flowchart](https://github.com/user-attachments/assets/0d53a116-f2c4-490a-8905-17bac1abb6ac)
-
+![architecture](https://github.com/user-attachments/assets/b398521b-c6c7-42bb-a17f-25c5f6c22a13)
 
 
 ## Improvements
