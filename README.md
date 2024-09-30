@@ -1,11 +1,12 @@
 ## Background Removal Web App
 
 This is a **Background Removal Web App** built with Streamlit and the `rembg` library. It allows users to upload images, remove their backgrounds, and download the processed images. The application supports multiple image formats and provides a simple and intuitive user interface for seamless background removal.
+</br>
 
 ## Live web app </br>https://autobgremover.com
 <img width="700" alt="Screenshot" src="https://github.com/user-attachments/assets/12535b4a-90e8-4d25-8afe-c7673b5ba146">
 <img width="700" alt="Screenshot2" src="https://github.com/user-attachments/assets/9330e12b-ce36-4dd9-9fbd-ce21f15e384a">
-
+</br>
 
 ## Features
 
@@ -16,12 +17,13 @@ This is a **Background Removal Web App** built with Streamlit and the `rembg` li
 - **Progress Tracking:** A progress bar displays the background removal progress for multiple images.
 - **Download Individual Images:** Provides individual download options for each processed image.
 - **Batch Image Download:** Allows users to download all processed images as a ZIP file.
-  
+</br>
 
 ## Architecture
-Summary: Explain why I used this architecture and How it worked internally
+Explain why I used this architecture and How it worked internally
+</br>
 <img width="700" alt="Architecture" src="https://github.com/user-attachments/assets/ac4c667c-e617-4154-992f-0bc1340d85e3">
-
+</br>
 
 
 ## Issue faced
@@ -32,7 +34,7 @@ Summary: Explain why I used this architecture and How it worked internally
 2. Problem:
    Solution:
    What I learned:
-
+</br>
 
 ## Future Improvements
 Currently working on (Last updated on September 28, 2024) </br>
@@ -42,4 +44,4 @@ Ordered by priority</br>
 - **Mobile Optimization:** Ensure the UI is fully responsive and optimized for mobile devices.
 - **Image Format Options for Download:** Allow users to choose different image formats (e.g., JPG, TIFF) for download rather than just PNG.
 - **Language Support:** Add multi-language support for non-English users.
-
+</br>
