@@ -52,8 +52,15 @@ Python, Streamlit, VS Code, GoDaddy, AWS (ACM, Load Balancer, Route 53, EC2 with
 - **What I learned:** I gained a clearer understanding of how DNS operates and how multiple entities such as the Registrar, Registry, and name servers are involved in directing user requests to the correct IP address (in this case, my EC2 instance). The process is more complex than it initially appears, with each entity playing a critical role in handling domain connections.</br></br>
 
 
-3️⃣ **The app loaded successfully but encountered 504 error when uploading images for background removal** </br>
-   🚩 Managing CPU and memory usage to enhance performance
+3️⃣ **Changing HTTP to HTTPS** </br>
+   🚩 **Redirecting using SSL Certificate & Load Balancer**</br>
+- **Problem:** Successfully connected the domain to the EC2 instance, but HTTPS access was not working, while HTTP worked. Although I knew SSL certificates were needed for secure connections, I was unsure where to obtain one. After researching, I found that Let’s Encrypt offers free SSL certificates, but installing them on GoDaddy hosting is difficult due to automated certificate issuance and renewal issues. GoDaddy's own automated renewal comes at an extra cost, so I looked for alternatives and discovered that I could obtain a free SSL certificate through AWS Certificate Manager (ACM) and use it with the Elastic Load Balancer (ELB). Despite completing the SSL certificate configuration, load balancer setup, target group settings, security group settings, and DNS record configurations, I still could not connect via HTTPS. I spent considerable time troubleshooting due to my unclear understanding of how Route 53 and the Load Balancer worked.</br>
+- **Solution:** After understanding the architecture involving Route 53, ACM, and the Load Balancer, I grasped the port mapping process. The Load Balancer was initially set to route HTTPS traffic to port 80 on the EC2 instance, mapping port 443 to port 80, with traffic from port 80 directed to port 8501 (Streamlit port) in the Docker container. The failure to do this successfully was due to the absence of an Nginx reverse proxy configuration to forward requests from port 80 to Streamlit’s port 8501. The app could operate without Nginx due to its simple structure, and since the Load Balancer could handle SSL processing, I modified the settings to map incoming traffic on port 443 directly to port 8501, which worked successfully. </br>
+- **What I learned:** I gained a deaper understanding of the architecture involving AWS Certificate Manager, Elastic Load Balancer, and Route 53, particularly the crucial role of port mapping in ensuring that traffic flows correctly between different ports and services. This knowledge allowed me to configure my application for secure HTTPS connections effectively. </br></br>
+
+
+4️⃣ **The app loaded successfully but encountered 504 error when uploading images for background removal** </br>
+   🚩 **Managing CPU and memory usage to enhance performance**
 - **Problem:** The web page successfully loaded, but upon uploading images for background removal, the application encountered 504 Gateway Timeout due to communication delays between the server and the client.</br>
 - **Solution:**</br>
 After rebooting the instance and confirming correct settings for the public IP, DNS, and firewall, I investigated Docker issues. I discovered that the running Docker container had exited automatically due to an "Out of Memory" (OOM) error caused by the Streamlit application consuming excessive memory. To address this:</br>
@@ -67,13 +74,12 @@ After rebooting the instance and confirming correct settings for the public IP, 
 ✅ Regular cleanup of unnecessary files and resources within Docker containers can significantly enhance performance and resource management.</br></br>
 
 
-4️⃣ **Automatic Docker Shutdown on Timeout Errors** </br>
-   🚩 Using configuration files to minimize downtime and ensure availability
+5️⃣ **Automatic Docker Shutdown on Timeout Errors** </br>
+   🚩 **Using configuration files to minimize downtime and ensure availability**
 - **Problem:** When a 504 Gateway Timeout error occurred, it led to subsequent 502 Bad Gateway errors.</br>
 - **Solution:** Initially, I had to manually restart Docker whenever a 502 error occurred, which was highly inefficient. To address this, I explored environment file configurations and modified the docker-compose.yml file to include restart: unless-stopped. This change ensured that the application restarts automatically if it encounters errors. As a result, the 502 error pages were eliminated, and refreshing the page now works seamlessly. </br>
 - **What I learned:** I learned the importance of configuring files because if a container stops due to an error or failure, it will automatically restart, minimizing downtime and ensuring the application remains available.</br></br>
 
-5️⃣
 
 ## Future Improvements
 Currently working on (Last updated on September 28, 2024) </br>
