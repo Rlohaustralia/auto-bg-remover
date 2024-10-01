@@ -45,11 +45,11 @@ Python, Streamlit, VS Code, GoDaddy, AWS (ACM, Load Balancer, Route 53, EC2 with
 - **What I learned:** I learned that Docker simplifies deployment by ensuring consistent environments, eliminating version and dependency issues, and improving app stability across platforms.</br></br>
 
   
-2️⃣ **The app Worked Locally but Failed After Deployment to EC2** </br>
-   🚩
-- **Problem:** When deploying the app from the local environment to EC2, issues occurred due to differences in library dependencies and server configurations. Code that worked locally ran into errors on EC2, requiring manual adjustments. The main issues were Python version and package version mismatches between the two environments.</br>
-- **Solution:** To fix this, Docker was introduced. The packages from requirements.txt were installed within the Docker image, ensuring the app ran the same on both local and EC2. </br>
-- **What I learned:** I learned that Docker simplifies deployment by ensuring consistent environments, eliminating version and dependency issues, and improving app stability across platforms.</br></br>
+2️⃣ **While I knew that DNS acts as a directory for IP addresses, I didn't fully understand the connection process** </br>
+   🚩 **Learning the roles of Registrant, Registrar, and Registry, along with how name servers forward requests, clarified the process**</br>
+- **Problem:** After purchasing a domain from GoDaddy, I was unsure how to connect it to the Elastic IP of my EC2 instance. While I knew that DNS acts like a directory for IP addresses, I didn't fully understand the steps required to achieve this connection. Though I was able to connect the domain to the EC2 instance through online searches, the process felt somewhat magical, and I wanted to gain a deeper understanding of how DNS works.</br>
+- **Solution:** Through further research, I learned that multiple entities are involved in this process: the Registrant (Client), the Registrar (e.g., GoDaddy), and the Registry (Top-level domain operators). Each operates its own name servers, which forward requests to the appropriate IP addresses to complete the connection. I studied how these entities interact to route traffic to my EC2 instance via DNS. </br>
+- **What I learned:** I gained a clearer understanding of how DNS operates and how multiple entities such as the Registrar, Registry, and name servers are involved in directing user requests to the correct IP address (in this case, my EC2 instance). The process is more complex than it initially appears, with each entity playing a critical role in handling domain connections.</br></br>
 
 
 3️⃣ **The app loaded successfully but encountered 504 error when uploading images for background removal** </br>
@@ -73,16 +73,16 @@ After rebooting the instance and confirming correct settings for the public IP, 
 - **Solution:** Initially, I had to manually restart Docker whenever a 502 error occurred, which was highly inefficient. To address this, I explored environment file configurations and modified the docker-compose.yml file to include restart: unless-stopped. This change ensured that the application restarts automatically if it encounters errors. As a result, the 502 error pages were eliminated, and refreshing the page now works seamlessly. </br>
 - **What I learned:** I learned the importance of configuring files because if a container stops due to an error or failure, it will automatically restart, minimizing downtime and ensuring the application remains available.</br></br>
 
-
+5️⃣
 
 ## Future Improvements
 Currently working on (Last updated on September 28, 2024) </br>
 ✔️ Ordered by priority</br>
 - **Improve image processing time:** Improve the app's ability to handle large data more efficiently, possibly through image resizing strategy, converting images to more efficient formats like webp, or Batch Processing Techniques.
-- **Enhanced Error Handling:** Provide more specific and user-friendly error messages when image processing fails, including possible solutions or retry options.
-- **Background Removal Improvement:** Enhance the background removal algorithm for better accuracy with white and light-colored clothing or jewelry by applying multiple models or introducing a different model to adjust the background to a darker shade, thereby increasing contrast and minimizing post-processing needs.
-- **Mobile Optimization:** Ensure the UI is fully responsive and optimized for mobile devices.
-- **Image Format Options for Download:** Allow users to choose different image formats (e.g., JPG, TIFF) for download rather than just PNG.
-- **Language Support:** Add multi-language support for non-English users.
+- **Enhanced error handling:** Provide more specific and user-friendly error messages when image processing fails, including possible solutions or retry options.
+- **Background removal improvement:** Enhance the background removal algorithm for better accuracy with white and light-colored clothing or jewelry by applying multiple models or introducing a different model to adjust the background to a darker shade, thereby increasing contrast and minimizing post-processing needs.
+- **Mobile optimization:** Ensure the UI is fully responsive and optimized for mobile devices.
+- **Image format options for download:** Allow users to choose different image formats (e.g., JPG, TIFF) for download rather than just PNG.
+- **Language support:** Add multi-language support for non-English users.
 </br>
 </br>
