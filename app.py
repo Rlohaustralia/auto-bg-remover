@@ -66,7 +66,7 @@ def main():
                     caption = f"{uploaded_file.name} {img_size}"
 
                     with col1:
-                        st.image(image, caption=caption, use_column_width=True)
+                        st.image(image, caption=caption, use_container_width=True)
 
                     with col2:
                         with st.spinner('Removing background...'):
