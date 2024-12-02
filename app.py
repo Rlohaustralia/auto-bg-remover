@@ -11,13 +11,6 @@ import os
 
 def main():
 
-    # Google AdSense script
-    st.markdown("""
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5826065978859520"
-     crossorigin="anonymous"></script>
-    """, unsafe_allow_html=True)
-        
-
     # Page Config
     st.set_page_config(layout="wide", page_title="Background Remover")
     
