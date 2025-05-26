@@ -78,6 +78,16 @@ After rebooting the instance and confirming correct settings for the public IP, 
 - **What I learned:** I learned the importance of configuring files because if a container stops due to an error or failure, it will automatically restart, minimizing downtime and ensuring the application remains available.</br></br>
 
 
+6️⃣ **The app was accessible via HTTP, but HTTPS caused issues**</br>
+   🚩 **Using Nginx and AWS Certificate Manager (ACM) to enable HTTPS**
+- **Problem:** After deploying a Dockerized Streamlit app to EC2, it was accessible via HTTP by mapping port 80 to Streamlit’s internal port 8501. However, attempting to access the app over HTTPS led to browser security warnings. Streamlit does not support HTTPS natively, and no SSL certificate was configured at that point.</br>
+- **Solution:** To enable HTTPS, I added Nginx as a reverse proxy in front of the Streamlit app. Nginx was configured to listen on port 443 and forward incoming HTTPS requests to the internal Streamlit service running on port 8501. For SSL, I used AWS Certificate Manager (ACM) to issue a free SSL certificate and integrated it with an AWS Application Load Balancer (ALB). The load balancer handled HTTPS termination, and forwarded traffic securely to the EC2 instance running Nginx and Docker.</br>
+- **What I learned:** I learned how HTTPS can be enabled through different layers—either directly via Nginx with a Certbot-issued certificate, or using AWS-managed certificates via ACM and an ALB. This experience deepened my understanding of cloud infrastructure, load balancing, and secure production deployment best practices.
+</br></br>
+
+
+
+
 ## Future Improvements
 ✔️ Ordered by priority</br>
 - **Improve image processing time:** Improve the app's ability to handle large data more efficiently, possibly through image resizing strategy, converting images to more efficient formats like webp, or Batch Processing Techniques.
